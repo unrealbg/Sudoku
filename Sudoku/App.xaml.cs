@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Prism.Ioc;
+using Prism.Unity;
+using Sudoku.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +14,16 @@ namespace Sudoku
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
+        protected override Window CreateShell()
+        {
+            var shell = Container.Resolve<GameShellView>();
+            return shell;
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+        }
     }
 }
